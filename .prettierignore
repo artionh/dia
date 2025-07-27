@@ -1,0 +1,9 @@
+# Prettier ignores
+node_modules/
+dist/
+build/
+coverage/
+.env
+*.log
+package-lock.json
+yarn.lock

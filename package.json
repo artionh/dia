@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/cli/cli.js"
+  },
+  "bin": {
+    "dia": "src/cli/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +20,8 @@
     "semver": "^7.7.2"
   },
   "devDependencies": {
-    "jest": "^30.0.5"
-  }
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2"
+  },
+  "type": "module"
 }

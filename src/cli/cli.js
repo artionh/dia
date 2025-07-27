@@ -3,6 +3,7 @@
 import { program } from 'commander';
 import chalk from 'chalk';
 import ProjectValidator from '../libs/validators/project-validator.js';
+
 const { blue, red, green, cyan, yellow, white } = chalk;
 
 program

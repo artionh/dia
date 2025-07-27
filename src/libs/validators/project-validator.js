@@ -1,7 +1,6 @@
 import path from 'path';
-import validateNpmProject from '../libs/validators/validate-npm-project.js';
-import validateGitProject from '../libs/validators/validate-git-project.js';
-import { log } from 'console';
+import validateNpmProject from './validate-npm-project.js';
+import validateGitProject from './validate-git-project.js';
 
 class ProjectValidator {
   constructor(projectPath = process.cwd()) {

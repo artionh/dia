@@ -1,8 +1,7 @@
 {
-  "name": "dia",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@artionh/dia",
+  "version": "0.0.1.1-alpha",
+  "description": "Depenency Impact Analyzer helps you analyze the impact of updating dependencies in your project.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node src/cli/cli.js"
@@ -11,8 +10,8 @@
     "dia": "src/cli/cli.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Artion Hasani",
+  "license": "UNLICENSED",
   "dependencies": {
     "axios": "^1.11.0",
     "chalk": "^5.4.1",

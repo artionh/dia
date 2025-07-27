@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { ERROR_CODES } from '../utils/error-codes.js';
 
 const validateGitProject = function (projectPath) {
   const gitPath = path.join(projectPath, '.git');
@@ -7,7 +8,7 @@ const validateGitProject = function (projectPath) {
   if (!fs.existsSync(gitPath)) {
     return {
       isValid: false,
-      errors: ['No .git directory found. This project must be a git repository.'],
+      errors: [ERROR_CODES.GIT_NO_DIR],
     };
   }
 
@@ -16,7 +17,7 @@ const validateGitProject = function (projectPath) {
     if (!fs.existsSync(gitConfigPath)) {
       return {
         isValid: false,
-        errors: ['Git repository appears to be corrupted (no config file found).'],
+        errors: [ERROR_CODES.GIT_NO_CONFIG],
       };
     }
 
@@ -24,7 +25,7 @@ const validateGitProject = function (projectPath) {
     if (!fs.existsSync(headsPath) || fs.readdirSync(headsPath).length === 0) {
       return {
         isValid: false,
-        errors: ['Git repository has no commits. Please make an initial commit first.'],
+        errors: [ERROR_CODES.GIT_NO_COMMITS],
       };
     }
 
@@ -38,7 +39,7 @@ const validateGitProject = function (projectPath) {
   } catch (error) {
     return {
       isValid: false,
-      errors: [`Error checking git repository: ${error.message}`],
+      errors: [`${ERROR_CODES.GIT_GENERIC_ERROR}\n ${error.message}`],
     };
   }
 };

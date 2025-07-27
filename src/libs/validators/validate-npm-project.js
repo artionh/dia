@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { ERROR_CODES } from '../utils/error-codes.js';
 
 const validateNpmProject = function (projectPath) {
   const packageJsonPath = path.join(projectPath, 'package.json');
@@ -7,25 +8,18 @@ const validateNpmProject = function (projectPath) {
   if (!fs.existsSync(packageJsonPath)) {
     return {
       isValid: false,
-      errors: ["No package.json found. This doesn't appear to be an npm project."],
+      errors: [ERROR_CODES.NPM_NO_PACKAGE_JSON],
     };
   }
 
   try {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
-    if (!packageJson.name) {
-      return {
-        isValid: false,
-        errors: ['package.json is missing required "name" field'],
-      };
-    }
-
     const hasDeps = packageJson.dependencies || packageJson.devDependencies;
     if (!hasDeps) {
       return {
         isValid: false,
-        errors: ['No dependencies found in package.json. Nothing to analyze.'],
+        errors: [ERROR_CODES.NPM_NO_DEPENDENCIES],
       };
     }
 
@@ -36,7 +30,7 @@ const validateNpmProject = function (projectPath) {
   } catch (error) {
     return {
       isValid: false,
-      errors: [`Invalid package.json: ${error.message}`],
+      errors: [`${ERROR_CODES.NPM_INVALID_PACKAGE_JSON}\n ${error.message}`],
     };
   }
 };

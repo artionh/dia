@@ -45,11 +45,12 @@ class ProjectValidator {
     const devDepCount = Object.keys(pkg.devDependencies || {}).length;
 
     return {
-      name: pkg.name,
-      version: pkg.version,
+      name: pkg.name || 'Unknown',
+      version: pkg.version || '0.0.0',
       dependencyCount: depCount,
       devDependencyCount: devDepCount,
       totalDependencies: depCount + devDepCount,
+      projectPath: this.projectPath,
     };
   }
 }

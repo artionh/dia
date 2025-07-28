@@ -21,9 +21,9 @@ export const EXIT_CODES = {
 
 export const CLI_MESSAGES = {
   HEADER: '🔍 Dependency Impact Analyzer',
-  VALIDATION_PASSED: '✅ Project validation passed!',
-  VALIDATION_FAILED: '❌ Project validation failed:',
-  PROJECT_SUMMARY: '📋 Project Summary:',
-  READY_TO_ANALYZE: '🚀 Ready to analyze dependency updates!',
-  UNEXPECTED_ERROR: '❌ An unexpected error occurred:',
+  VALIDATION_PASSED: 'Project validation passed!',
+  VALIDATION_FAILED: 'Project validation failed:',
+  PROJECT_SUMMARY: 'Project Summary:',
+  READY_TO_ANALYZE: 'Ready to analyze dependency updates!',
+  UNEXPECTED_ERROR: 'An unexpected error occurred:',
 };

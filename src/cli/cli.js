@@ -4,8 +4,9 @@ import { program } from 'commander';
 import ProjectValidator from '../libs/validators/project-validator.js';
 import { Logger } from '../libs/utils/logger.js';
 import { CLI_MESSAGES, EXIT_CODES } from '../libs/utils/constants.js';
+import { analyzeDependencies } from '../commands/analyze.js';
 
-function handleAnalyze(projectPath) {
+async function handleAnalyze(projectPath) {
   Logger.info(CLI_MESSAGES.HEADER);
   Logger.newLine();
 
@@ -39,7 +40,27 @@ function handleAnalyze(projectPath) {
     Logger.keyValue('Total to analyze', summary.totalDependencies.toString());
     Logger.newLine();
 
-    Logger.warn(CLI_MESSAGES.READY_TO_ANALYZE);
+    Logger.info('🚀 Starting dependency analysis...');
+    Logger.newLine();
+
+    const packageJson = validation.projectInfo.packageJson;
+
+    const analysisResult = await analyzeDependencies(packageJson, {
+      maxConcurrent: 5,
+      timeout: 15000,
+    });
+
+    Logger.newLine();
+    Logger.success('Dependency analysis completed successfully!');
+
+    if (analysisResult.summary.errors > 0) {
+      process.exit(EXIT_CODES.VALIDATION_ERROR);
+    }
+
+    if (analysisResult.summary.securityRisks.high > 0) {
+      Logger.warn('High security risks detected. Consider updating critical dependencies.');
+      process.exit(EXIT_CODES.VALIDATION_ERROR);
+    }
   } catch (error) {
     Logger.error(CLI_MESSAGES.UNEXPECTED_ERROR, error);
     process.exit(EXIT_CODES.UNEXPECTED_ERROR);

@@ -11,7 +11,7 @@ export class Logger {
   }
 
   static success(message) {
-    console.log(green(`✅ ${message}`));
+    console.log(green(`✅  ${message}`));
   }
 
   static info(message) {

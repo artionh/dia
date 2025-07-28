@@ -1,6 +1,6 @@
 {
   "name": "@artionh/dia",
-  "version": "0.0.2-4-alpha",
+  "version": "0.0.2-5-alpha",
   "description": "Dependency Impact Analyzer helps you analyze the impact of updating dependencies in your project.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

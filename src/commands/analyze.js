@@ -103,7 +103,7 @@ function displayOutdatedDependencies(outdated) {
     );
 
     if (dep.description) {
-      Logger.indent(`Description: ${dep.description.substring(0, 80)}...`);
+      Logger.listItem(`Description: ${dep.description.substring(0, 80)}...`);
     }
   });
 }
